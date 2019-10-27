@@ -20,7 +20,7 @@ public class HT : PhysicsGame
 
     public override void Begin()
     {
-        Level.BackgroundColor = Color.Beige;
+        Level.Background.Image = LoadImage("Tausta");
         Level.CreateBorders();
 
         PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1");
@@ -29,6 +29,7 @@ public class HT : PhysicsGame
         PhysicsObject karkki = Karkit(this);
 
         AddCollisionHandler(pelaaja, kyna, KasittelePallonTormays);
+        AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
 
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä");
         Keyboard.Listen(Key.Up, ButtonState.Down, LyoUkkoa, "lyö", pelaaja, nopeusYlos);
@@ -95,6 +96,13 @@ public class HT : PhysicsGame
 
         return karkki;
     }
+
+    void pelaajaTormaaKarkkiin(PhysicsObject pelaaja, PhysicsObject karkki)
+    {
+        pelaaja.Color = new Color(RandomGen.NextInt(0, 255), RandomGen.NextInt(0, 255), RandomGen.NextInt(0, 255));
+        Remove(karkki);          
+    }
+
 
 
 
