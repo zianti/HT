@@ -74,7 +74,7 @@ public class HT : PhysicsGame
         kyna.X = 100;
         Vector suunta = RandomGen.NextVector(100, 200);
         kyna.Hit(suunta);
-
+        // test
     
 
         return kyna;
