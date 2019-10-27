@@ -38,7 +38,7 @@ public class HT : PhysicsGame
         Keyboard.Listen(Key.Left, ButtonState.Down, LyoUkkoa, "lyö v", pelaaja, nopeusVasemmalle);
         Keyboard.Listen(Key.Escape, ButtonState.Pressed, Exit, "Lopeta peli");
 
-        MediaPlayer.Play("Electric_Guitar_Distortion");
+        MediaPlayer.Play("KarkkiPeli_01");
         MediaPlayer.IsRepeating = true;
 
         
