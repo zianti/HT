@@ -28,7 +28,7 @@ public class HT : PhysicsGame
         PhysicsObject kyna = Kynat(this);
         PhysicsObject karkki = Karkit(this);
 
-        AddCollisionHandler(pelaaja, kyna, KasittelePallonTormays);
+        AddCollisionHandler(pelaaja, kyna, kynaOsuuPelaajaan);
         AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
 
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä");
@@ -106,7 +106,7 @@ public class HT : PhysicsGame
 
 
 
-    void KasittelePallonTormays(PhysicsObject pelaaja, PhysicsObject kyna)
+    void kynaOsuuPelaajaan(PhysicsObject pelaaja, PhysicsObject kyna)
     {
         Explosion rajahdys = new Explosion(kyna.Width * 2);
         rajahdys.Position = kyna.Position;
