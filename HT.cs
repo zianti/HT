@@ -23,10 +23,11 @@ public class HT : PhysicsGame
         Level.Background.Image = LoadImage("Tausta");
         Level.CreateBorders();
 
-        PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1");
-        PhysicsObject vesa = LuoNelikulmio(this, "vesa");
+        PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1", 0, 0);
+        PhysicsObject vesa = LuoNelikulmio(this, "vesa", -300, -300);
         PhysicsObject kyna = Kynat(this);
         PhysicsObject karkki = Karkit(this);
+        // LuoKyna();
 
         AddCollisionHandler(pelaaja, kyna, kynaOsuuPelaajaan);
         AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
@@ -42,11 +43,12 @@ public class HT : PhysicsGame
         MediaPlayer.IsRepeating = true;
 
         
+        
 
 
     }
 
-    public static PhysicsObject LuoNelikulmio(PhysicsGame peli, string tunniste)
+    public static PhysicsObject LuoNelikulmio(PhysicsGame peli, string tunniste, double x, double y)
     {
         PhysicsObject ukko = new PhysicsObject(70, 100, Shape.Rectangle);
         ukko.Color = Color.Black;
@@ -60,6 +62,8 @@ public class HT : PhysicsGame
         ukko.Restitution = 0;
         ukko.AngularDamping = 0.9;
         ukko.MaxVelocity = 40000;
+        ukko.X = x;
+        ukko.Y = y;
         
         return ukko;
     }
@@ -78,8 +82,9 @@ public class HT : PhysicsGame
         kyna.X = 100;
         Vector suunta = RandomGen.NextVector(100, 200);
         kyna.Hit(suunta);
+        kyna.LifetimeLeft = TimeSpan.FromSeconds(5.0);
         // test
-    
+        
 
         return kyna;
     }
@@ -104,8 +109,18 @@ public class HT : PhysicsGame
     }
 
 
-
-
+    /*void LuoKyna()
+        {
+            PhysicsObject kyna = new PhysicsObject(20, 40);
+            kyna.Color = Color.Red;
+            Add(kyna);
+            kyna.Y = 100;
+            kyna.X = 100;
+            Vector suunta = RandomGen.NextVector(300, 400);
+            kyna.Hit(suunta);
+            kyna.LifetimeLeft = TimeSpan.FromSeconds(10.0);
+        }
+        */
     void kynaOsuuPelaajaan(PhysicsObject pelaaja, PhysicsObject kyna)
     {
         Explosion rajahdys = new Explosion(kyna.Width * 2);
@@ -114,6 +129,8 @@ public class HT : PhysicsGame
         this.Add(rajahdys);
         Remove(kyna);
     }
+
+    
 
     // Moro Valte
     // VALTE VALTE Moro
