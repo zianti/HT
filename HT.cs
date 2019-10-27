@@ -5,6 +5,9 @@ using Jypeli.Assets;
 using Jypeli.Controls;
 using Jypeli.Widgets;
 
+/// <summary>
+/// 
+/// </summary>
 public class HT : PhysicsGame
 {
     /// Pelaajan liike
@@ -23,6 +26,7 @@ public class HT : PhysicsGame
         PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1");
         PhysicsObject vesa = LuoNelikulmio(this, "vesa");
         PhysicsObject kyna = Kynat(this);
+        PhysicsObject karkki = Karkit(this);
 
         AddCollisionHandler(pelaaja, kyna, KasittelePallonTormays);
 
@@ -74,6 +78,19 @@ public class HT : PhysicsGame
     
 
         return kyna;
+    }
+
+    public static PhysicsObject Karkit(PhysicsGame peli)
+    {
+        PhysicsObject karkki = new PhysicsObject(15, 35);
+        karkki.Color = Color.Blue;
+        peli.Add(karkki);
+        karkki.Y = -100;
+        karkki.X = -100;
+        Vector suunta = RandomGen.NextVector(100, 200);
+        karkki.Hit(suunta);
+
+        return karkki;
     }
 
 
