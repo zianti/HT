@@ -14,3 +14,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Electric_Guitar_Distortion.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Electric_Guitar_Distortion.mp3
+
