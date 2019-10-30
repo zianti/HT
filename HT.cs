@@ -26,7 +26,7 @@ public class HT : PhysicsGame
         PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1", -350, -350);
         PhysicsObject vesa = LuoNelikulmio(this, "vesa", 0, 0);
         // PhysicsObject kyna = Kynat(this);
-        PhysicsObject karkki = Karkit(this);
+        //PhysicsObject karkki = Karkit(this);
         LuoKyna();
 
         pelaaja.Image = LoadImage("LINUX");
@@ -34,7 +34,7 @@ public class HT : PhysicsGame
 
 
         AddCollisionHandler(pelaaja, "kynis", kynaOsuuPelaajaan); ;
-        AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
+        AddCollisionHandler(pelaaja, "karkkis", pelaajaTormaaKarkkiin);
 
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä");
         Keyboard.Listen(Key.Up, ButtonState.Down, LyoUkkoa, "lyö", pelaaja, nopeusYlos);
@@ -50,6 +50,11 @@ public class HT : PhysicsGame
         synnytaOlioita.Interval = 3.0;
         synnytaOlioita.Timeout += LuoKyna;
         synnytaOlioita.Start();
+
+        Timer synnytaKarkkeja = new Timer();
+        synnytaKarkkeja.Interval = 3.0;
+        synnytaKarkkeja.Timeout += LuoKarkki;
+        synnytaKarkkeja.Start();
 
 
 
@@ -108,7 +113,7 @@ public class HT : PhysicsGame
         return kyna;
     }*/
 
-    public static PhysicsObject Karkit(PhysicsGame peli)
+    /*public static PhysicsObject Karkit(PhysicsGame peli)
     {
         PhysicsObject karkki = new PhysicsObject(35, 35);
         karkki.Color = Color.Blue;
@@ -120,6 +125,20 @@ public class HT : PhysicsGame
         karkki.Image = LoadImage("karkkiHR");
 
         return karkki;
+    }*/
+
+    void LuoKarkki()
+    {
+        PhysicsObject karkki = new PhysicsObject(35, 35);
+        karkki.Color = Color.Red;
+        Add(karkki);
+        karkki.Y = 85;
+        karkki.X = 85;
+        karkki.Tag = "karkkis";
+        karkki.Image = LoadImage("karkkiHR");
+        Vector suunta = RandomGen.NextVector(300, 400);
+        karkki.Hit(suunta);
+        karkki.LifetimeLeft = TimeSpan.FromSeconds(10.0);
     }
 
     void pelaajaTormaaKarkkiin(PhysicsObject pelaaja, PhysicsObject karkki)
