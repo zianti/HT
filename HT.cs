@@ -24,11 +24,11 @@ public class HT : PhysicsGame
 
         PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1", 0, 0);
         PhysicsObject vesa = LuoNelikulmio(this, "vesa", -300, -300);
-        PhysicsObject kyna = Kynat(this);
+        // PhysicsObject kyna = Kynat(this);
         PhysicsObject karkki = Karkit(this);
-        // LuoKyna();
+        LuoKyna();
 
-        AddCollisionHandler(pelaaja, kyna, kynaOsuuPelaajaan);
+        AddCollisionHandler(pelaaja, "kynis", kynaOsuuPelaajaan); ;
         AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
 
         Keyboard.Listen(Key.F1, ButtonState.Pressed, ShowControlHelp, "Näytä");
@@ -41,8 +41,11 @@ public class HT : PhysicsGame
         MediaPlayer.Play("KarkkiPeli_01");
         MediaPlayer.IsRepeating = true;
 
-        
-        
+        Timer synnytaOlioita = new Timer();
+        synnytaOlioita.Interval = 5.0;
+        synnytaOlioita.Timeout += LuoKyna;
+        synnytaOlioita.Start();
+
 
 
     }
@@ -52,7 +55,6 @@ public class HT : PhysicsGame
         PhysicsObject ukko = new PhysicsObject(70, 100, Shape.Rectangle);
         ukko.Color = Color.Black;
         
-        // Vector suunta = new Vector(vauhti, vauhti);
         // ukko.Hit(suunta);
         ukko.Tag = tunniste;
         // ukko.Mass = 1.0;
@@ -66,28 +68,30 @@ public class HT : PhysicsGame
         
         return ukko;
     }
-
+    
     public static void LyoUkkoa(PhysicsObject ukko, Vector suunta)
     {
         ukko.Push(suunta);
     }
 
-    public static PhysicsObject Kynat(PhysicsGame peli)
+    /*public static PhysicsObject Kynat(PhysicsGame peli)
     {
         PhysicsObject kyna = new PhysicsObject(20, 40);
         kyna.Color = Color.Red;
         peli.Add(kyna);
         kyna.Y = 100;
         kyna.X = 100;
+        kyna.Tag = "kynis";
         Vector suunta = RandomGen.NextVector(100, 200);
         kyna.Hit(suunta);
         kyna.LifetimeLeft = TimeSpan.FromSeconds(5.0);
         kyna.Image = LoadImage("linetool");
+        
         // test
         
 
         return kyna;
-    }
+    }*/
 
     public static PhysicsObject Karkit(PhysicsGame peli)
     {
@@ -109,18 +113,20 @@ public class HT : PhysicsGame
     }
 
 
-    /*void LuoKyna()
+    void LuoKyna()
         {
             PhysicsObject kyna = new PhysicsObject(20, 40);
             kyna.Color = Color.Red;
             Add(kyna);
             kyna.Y = 100;
             kyna.X = 100;
+            kyna.Tag = "kynis";
+            kyna.Image = LoadImage("linetool");
             Vector suunta = RandomGen.NextVector(300, 400);
             kyna.Hit(suunta);
             kyna.LifetimeLeft = TimeSpan.FromSeconds(10.0);
         }
-        */
+        
     void kynaOsuuPelaajaan(PhysicsObject pelaaja, PhysicsObject kyna)
     {
         Explosion rajahdys = new Explosion(kyna.Width * 2);
