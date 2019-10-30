@@ -131,13 +131,13 @@ public class HT : PhysicsGame
 
     void LuoKyna()
         {
-            PhysicsObject kyna = new PhysicsObject(20, 40);
+            PhysicsObject kyna = new PhysicsObject(40, 20);
             kyna.Color = Color.Red;
             Add(kyna);
             kyna.Y = 100;
             kyna.X = 100;
             kyna.Tag = "kynis";
-            kyna.Image = LoadImage("linetool");
+            kyna.Image = LoadImage("kynaHT");
             Vector suunta = RandomGen.NextVector(300, 400);
             kyna.Hit(suunta);
             kyna.LifetimeLeft = TimeSpan.FromSeconds(10.0);
