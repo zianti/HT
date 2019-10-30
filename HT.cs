@@ -17,7 +17,6 @@ public class HT : PhysicsGame
     Vector nopeusVasemmalle = new Vector(-2000, 0);
     Vector nopeusOikealle = new Vector(2000, 0);
 
-
     public override void Begin()
     {
         Level.Background.Image = LoadImage("Tausta");
@@ -83,6 +82,7 @@ public class HT : PhysicsGame
         Vector suunta = RandomGen.NextVector(100, 200);
         kyna.Hit(suunta);
         kyna.LifetimeLeft = TimeSpan.FromSeconds(5.0);
+        kyna.Image = LoadImage("linetool");
         // test
         
 

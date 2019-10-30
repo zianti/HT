@@ -26,6 +26,18 @@
 /processorParam:Quality=Best
 /build:KarkkiPeli_01.mp3
 
+#begin Linetool.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Linetool.png
+
 #begin Tausta.png
 /importer:TextureImporter
 /processor:TextureProcessor
