@@ -22,11 +22,16 @@ public class HT : PhysicsGame
         Level.Background.Image = LoadImage("Tausta");
         Level.CreateBorders();
 
-        PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1", 0, 0);
-        PhysicsObject vesa = LuoNelikulmio(this, "vesa", -300, -300);
+
+        PhysicsObject pelaaja = LuoNelikulmio(this, "pelaaja1", -350, -350);
+        PhysicsObject vesa = LuoNelikulmio(this, "vesa", 0, 0);
         // PhysicsObject kyna = Kynat(this);
         PhysicsObject karkki = Karkit(this);
         LuoKyna();
+
+        pelaaja.Image = LoadImage("LINUX");
+        vesa.Image = LoadImage("spookyseason");
+
 
         AddCollisionHandler(pelaaja, "kynis", kynaOsuuPelaajaan); ;
         AddCollisionHandler(pelaaja, karkki, pelaajaTormaaKarkkiin);
@@ -42,7 +47,7 @@ public class HT : PhysicsGame
         MediaPlayer.IsRepeating = true;
 
         Timer synnytaOlioita = new Timer();
-        synnytaOlioita.Interval = 5.0;
+        synnytaOlioita.Interval = 3.0;
         synnytaOlioita.Timeout += LuoKyna;
         synnytaOlioita.Start();
 
@@ -66,6 +71,7 @@ public class HT : PhysicsGame
         ukko.X = x;
         ukko.Y = y;
         
+
         return ukko;
     }
     
@@ -76,9 +82,10 @@ public class HT : PhysicsGame
 
     /*public static PhysicsObject Kynat(PhysicsGame peli)
     {
-        PhysicsObject kyna = new PhysicsObject(20, 40);
+        PhysicsObject kyna = new PhysicsObject(40, 20);
         kyna.Color = Color.Red;
         peli.Add(kyna);
+<<<<<<< Updated upstream
         kyna.Y = 100;
         kyna.X = 100;
         kyna.Tag = "kynis";
@@ -87,6 +94,14 @@ public class HT : PhysicsGame
         kyna.LifetimeLeft = TimeSpan.FromSeconds(5.0);
         kyna.Image = LoadImage("linetool");
         
+=======
+        kyna.Y = 14;
+        kyna.X = 14;
+        Vector suunta = RandomGen.NextVector(400, 500);
+        kyna.Hit(suunta);
+        kyna.LifetimeLeft = TimeSpan.FromSeconds(5.0);
+        kyna.Image = LoadImage("kynaHT");
+>>>>>>> Stashed changes
         // test
         
 
@@ -95,13 +110,14 @@ public class HT : PhysicsGame
 
     public static PhysicsObject Karkit(PhysicsGame peli)
     {
-        PhysicsObject karkki = new PhysicsObject(15, 35);
+        PhysicsObject karkki = new PhysicsObject(35, 35);
         karkki.Color = Color.Blue;
         peli.Add(karkki);
-        karkki.Y = -100;
-        karkki.X = -100;
-        Vector suunta = RandomGen.NextVector(100, 200);
+        karkki.Y = 10;
+        karkki.X = 10;
+        Vector suunta = RandomGen.NextVector(400, 500);
         karkki.Hit(suunta);
+        karkki.Image = LoadImage("karkkiHR");
 
         return karkki;
     }
